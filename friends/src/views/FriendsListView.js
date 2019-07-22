@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-import { FriendsList } from '../components/FriendsList'
+import FriendsList from '../components/FriendsList'
 import { getData } from '../actions'
 import Form from '../components/form';
 
@@ -10,24 +10,35 @@ import Form from '../components/form';
 
 
 class FriendsListView extends React.Component {
-
-  componentDidMount() {
-    this.props.getData();
-  }
-
-  logOut = (event) => {
-      event.preventDefault();
-      localStorage.removeItem('token');
-      this.props.history.push('/login');
-  }
-
-  render() {
-    if (this.props.fetchingFriends) {
-      // return something here to indicate that you are fetching data
-      return <p>Friends Loading...</p>
+    constructor() {
+        super();
+        this.state = {
+          hide: true,
+        };
     }
 
-    const friendsData = this.state.friends.map(friend =>(
+    componentDidMount() {
+        this.props.getData();
+    }
+
+    logOut = (event) => {
+        event.preventDefault();
+        localStorage.removeItem('token');
+        this.props.history.push('/login');
+    }
+
+    hide = event => {
+        event.preventDefault();
+        this.setState({hide: false})
+    }
+
+    render() {
+        if (this.props.fetchingFriends) {
+        // return something here to indicate that you are fetching data
+        return <p>Friends Loading...</p>
+        }
+
+    const friendsData = this.props.friends.map(friend =>(
         <FriendsList
            age={friend.age}
            email={friend.email}
@@ -50,20 +61,20 @@ class FriendsListView extends React.Component {
 
             <section className="add-friend-section">
                 <Form
-                    name={this.state.name}
-                    age={this.state.age}
-                    email={this.state.email}
-                    addFriend={this.addFriend}
-                    hide={this.state.hide}
-                    id={this.state.friends.length + 1}
+                    // name={this.state.name}
+                    // age={this.state.age}
+                    // email={this.state.email}
+                    // addFriend={this.addFriend}
+                    // hide={this.state.hide}
+                    // id={this.state.friends.length + 1}
                 />
             </section>
 
-            <div className={this.state.hide === false ? 'hidden' : 'add-btn'}>
+            {/* <div className={this.state.hide === false ? 'hidden' : 'add-btn'}>
                 <button className="contact100-form-btn" onClick={this.hide} >
                     Add Friend
                 </button>
-            </div>
+            </div> */}
         </div>
     );
   }

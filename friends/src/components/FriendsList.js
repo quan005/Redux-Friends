@@ -54,8 +54,13 @@ class FriendsList extends React.Component {
     render() {
         return (
             <CardContainer>
-                <Friend />
-
+                <Friend
+                    age={this.props.age}
+                    email={this.props.email}
+                    name={this.props.name}
+                    id={this.props.id}
+                    key={this.props.id}
+                />
                 <UpdateForm/>
             </CardContainer>
         );

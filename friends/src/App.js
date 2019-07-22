@@ -13,7 +13,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="app">
-                <PrivateRoute exact path="/" Component={FriendsListView} />
+                <PrivateRoute exact path="/" component={FriendsListView} />
                 <Route exact path="/login" component={Login} />
             </div>
         )

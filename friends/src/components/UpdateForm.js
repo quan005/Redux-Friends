@@ -17,8 +17,9 @@ class UpdateForm extends React.Component {
     handleChange = event => {
         event.preventDefault();
 
-        this.setState({
-            [event.target.name]: event.target.value,
+        this.setState({updateFriend: { 
+            ...this.state.updateFriend, 
+            [event.target.name]: event.target.value}
         })
     }
 
@@ -37,17 +38,17 @@ class UpdateForm extends React.Component {
             <div className={this.props.showUpdate === true ? 'update-form-container' : 'hidden'}>
                 <form onSubmit={() => this.updateFriend()}>
                     <div className="wrap-input85 rs1-wrap-input85">
-                            <input className="input100" type="text" name="name" value={this.state.updateFriend.name} onChange={this.inputHandler} placeholder="Update Name" />
+                            <input className="input100" type="text" name="name" value={this.state.updateFriend.name} onChange={this.handleChange} placeholder="Update Name" />
                             <span className="focus-input100"></span>
                     </div>
 
                     <div className="wrap-input85 rs1-wrap-input85">
-                            <input className="input100" type="number" name="age" value={this.state.updateFriend.age} onChange={this.inputHandler} placeholder="Update Age" />
+                            <input className="input100" type="number" name="age" value={this.state.updateFriend.age} onChange={this.handleChange} placeholder="Update Age" />
                             <span className="focus-input100"></span>
                     </div>
 
                     <div className="wrap-input85 rs1-wrap-input85">
-                            <input className="input100" type="email" name="email" value={this.state.updateFriend.email} onChange={this.inputHandler} placeholder="Update Email Address" />
+                            <input className="input100" type="email" name="email" value={this.state.updateFriend.email} onChange={this.handleChange} placeholder="Update Email Address" />
                             <span className="focus-input100"></span>
                     </div>
 
